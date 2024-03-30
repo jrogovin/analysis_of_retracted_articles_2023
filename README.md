@@ -1,1 +1,2 @@
-# 2024Spr_projects
+# Analysis of Retracted Articles in 2023
+The goal of this project is to expand on the work done by Van Noorden (2023). This article argues that retraction rates in 2023 are on the rise, citing a large number of retractions from the publisher, Hindawi, and breaks down retraction by country. The specific goals of this project are to take Van Noorden's work further by analyzing retraction by publisher, year, retraction reason, author, country, and time from original publication to retraction notice. 
