@@ -1,4 +1,5 @@
 import pandas as pd
+from collections import Counter
 
 
 def get_retracted_articles(retraction_file):
@@ -13,11 +14,11 @@ def get_retracted_articles(retraction_file):
     return retracted_articles
 
 
-def get_2023_and_earlier(retracted_articles):
+def get_date_range(retracted_articles):
     """
-    This function takes retracted articles and returns only articles retracted in 2023 and earlier.
+    This function takes retracted articles and returns only articles retracted between 1900 and 2023.
     :param retracted_articles: A variable containing retracted articles
-    :return: All retracted articles retracted in 2023 and earlier.
+    :return: All retracted articles retracted between 1900 and 2023.
     """
     years = []
     for datetime in retracted_articles['RetractionDate']:
@@ -27,10 +28,19 @@ def get_2023_and_earlier(retracted_articles):
         years.append(int(year))
     retracted_articles['RetractionYear'] = years
 
-    retracted_articles = retracted_articles.loc[retracted_articles['RetractionYear'] < 2024]
+    retracted_articles = retracted_articles.loc[retracted_articles['RetractionYear'] > 1900]
     return retracted_articles
 
 
+def count_years(retracted_articles):
+    """
+    This function returns the count of retracted articles per year.
+    :param retracted_articles: All retracted articles retracted in 2023 and earlier.
+    :return: A counter of all retracted articles per year.
+    """
+    print(Counter(retracted_articles['RetractionYear']))
+
+
 if __name__ == '__main__':
-    get_2023_and_earlier(get_retracted_articles('data/retractions.csv'))
+    count_years(get_date_range(get_retracted_articles('data/retractions.csv')))
 
