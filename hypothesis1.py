@@ -18,7 +18,7 @@ def get_date_range(retracted_articles):
     """
     This function takes retracted articles and returns only articles retracted between 1900 and 2023.
     :param retracted_articles: A variable containing retracted articles
-    :return: All retracted articles retracted between 1900 and 2023.
+    :return: All retracted articles retracted between 2000 and 2023.
     """
     years = []
     for datetime in retracted_articles['RetractionDate']:
@@ -28,7 +28,7 @@ def get_date_range(retracted_articles):
         years.append(int(year))
     retracted_articles['RetractionYear'] = years
 
-    retracted_articles = retracted_articles.loc[retracted_articles['RetractionYear'] > 1900]
+    retracted_articles = retracted_articles.loc[retracted_articles['RetractionYear'] > 2000]
     return retracted_articles
 
 
@@ -38,7 +38,7 @@ def count_years(retracted_articles):
     :param retracted_articles: All retracted articles retracted in 2023 and earlier.
     :return: A counter of all retracted articles per year.
     """
-    print(Counter(retracted_articles['RetractionYear']))
+    return Counter(retracted_articles['RetractionYear'])
 
 
 if __name__ == '__main__':
