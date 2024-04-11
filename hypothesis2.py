@@ -14,14 +14,15 @@ def get_retracted_articles(retraction_file):
     return retracted_articles
 
 
-def count_retraction_reasons(retracted_articles):
-    reasons = retracted_articles['Reason']
-    for reason in reasons:
-        reason = reason.split(';')
-        print(reason)
+def split_retraction_reasons(retracted_articles):
+    retracted_articles['Reason'] = retracted_articles['Reason'].str.split(';')
+    file = retracted_articles.explode('Reason')
+    return file
 
 
 if __name__ == '__main__':
-    count_retraction_reasons((get_date_range(get_retracted_articles('data/retractions.csv'))))
+    split_retraction_reasons(get_date_range(get_retracted_articles('data/retractions.csv')))
+
+
 
 
