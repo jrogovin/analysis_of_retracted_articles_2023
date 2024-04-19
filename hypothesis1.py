@@ -35,7 +35,7 @@ def get_date_range(retracted_articles):
 def count_years(retracted_articles):
     """
     This function returns the count of retracted articles per year.
-    :param retracted_articles: All retracted articles retracted in 2023 and earlier.
+    :param retracted_articles: All retracted articles from the dataset.
     :return: A counter of all retracted articles per year.
     """
     return Counter(retracted_articles['RetractionYear'])

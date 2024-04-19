@@ -1,5 +1,6 @@
 import pandas as pd
 from hypothesis1 import get_date_range
+from collections import Counter
 
 
 def get_retracted_articles(retraction_file):
@@ -15,14 +16,24 @@ def get_retracted_articles(retraction_file):
 
 
 def split_retraction_reasons(retracted_articles):
+    """
+    This function splits the cells containing retraction reason into new rows for each reason.
+    :param retracted_articles: A dataframe containing retracted articles
+    :return: All retracted articles with each retraction reason expanded to a new row.
+    """
     retracted_articles['Reason'] = retracted_articles['Reason'].str.split(';')
     file = retracted_articles.explode('Reason')
     return file
 
 
+def count_total_retraction_reasons(retracted_articles):
+    """
+    This function returns the count of retraction reasons
+    :param retracted_articles: All retracted articles from the dataset
+    :return: A counter of all retraction reasons
+    """
+    return Counter(retracted_articles['Reason'])
+
+
 if __name__ == '__main__':
-    split_retraction_reasons(get_date_range(get_retracted_articles('data/retractions.csv')))
-
-
-
-
+    count_total_retraction_reasons(split_retraction_reasons(get_date_range(get_retracted_articles('data/retractions.csv'))))
