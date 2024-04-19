@@ -35,5 +35,10 @@ def count_total_retraction_reasons(retracted_articles):
     return Counter(retracted_articles['Reason'])
 
 
+def count_misconduct_by_year(retracted_articles):
+    misconduct = retracted_articles.loc[retracted_articles['Reason'] == '+Misconduct by Author']
+    return Counter(misconduct['RetractionYear'])
+
+
 if __name__ == '__main__':
-    count_total_retraction_reasons(split_retraction_reasons(get_date_range(get_retracted_articles('data/retractions.csv'))))
+    count_misconduct_by_year(split_retraction_reasons(get_date_range(get_retracted_articles('data/retractions.csv'))))

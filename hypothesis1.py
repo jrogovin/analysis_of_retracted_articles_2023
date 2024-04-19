@@ -16,7 +16,7 @@ def get_retracted_articles(retraction_file):
 
 def get_date_range(retracted_articles):
     """
-    This function takes retracted articles and returns only articles retracted between 1900 and 2023.
+    This function takes retracted articles and returns only articles retracted between 2000 and 2023.
     :param retracted_articles: A variable containing retracted articles
     :return: All retracted articles retracted between 2000 and 2023.
     """
