@@ -28,7 +28,7 @@ def split_retraction_reasons(retracted_articles):
 
 def count_total_retraction_reasons(retracted_articles):
     """
-    This function returns the count of retraction reasons
+    This function returns the count of retraction reasons.
     :param retracted_articles: All retracted articles from the dataset
     :return: A counter of all retraction reasons
     """
@@ -36,6 +36,11 @@ def count_total_retraction_reasons(retracted_articles):
 
 
 def count_misconduct_by_year(retracted_articles):
+    """
+    This function returns the count of retractions due to misconduct by author per year.
+    :param retracted_articles: All retracted articles from the dataset
+    :return: A counter of retracted articles due to misconduct by year.
+    """
     misconduct = retracted_articles.loc[retracted_articles['Reason'] == '+Misconduct by Author']
     return Counter(misconduct['RetractionYear'])
 
