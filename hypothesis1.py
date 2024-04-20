@@ -28,7 +28,7 @@ def get_date_range(retracted_articles):
         years.append(int(year))
     retracted_articles['RetractionYear'] = years
 
-    retracted_articles = retracted_articles.loc[retracted_articles['RetractionYear'] > 2000]
+    retracted_articles = retracted_articles.loc[retracted_articles['RetractionYear'] >= 2000]
     return retracted_articles
 
 
