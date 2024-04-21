@@ -44,5 +44,14 @@ def get_author_counts_total(retracted_articles):
     return Counter(retracted_articles['AuthorCounts'])
 
 
+def get_author_counts_per_year(retracted_articles):
+    years = retracted_articles['RetractionYear'].unique()
+    author_counts_per_year = []
+    for year in years:
+        author_count = retracted_articles.loc[retracted_articles['RetractionYear'] == year, ['AuthorCounts']]
+        author_counts_per_year.append(Counter(author_count['AuthorCounts']))
+    return author_counts_per_year
+
+
 if __name__ == '__main__':
-    get_author_counts_total(get_author_counts(get_date_range(get_retracted_articles('data/retractions.csv'))))
+    get_author_counts_per_year(get_author_counts(get_date_range(get_retracted_articles('data/retractions.csv'))))
