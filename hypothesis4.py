@@ -20,12 +20,17 @@ def convert_columns_to_datetime(retracted_articles):
     :return: Columns with dates as datetime objects
     """
     retracted_articles['RetractionDate'] = retracted_articles['RetractionDate'].apply(pd.to_datetime)
-    retracted_articles['OriginalPaperDate'] = retracted_articles['RetractionDate'].apply(pd.to_datetime)
+    retracted_articles['OriginalPaperDate'] = retracted_articles['OriginalPaperDate'].apply(pd.to_datetime)
+
+    return retracted_articles
 
 
 def get_time_between_dates(retracted_articles):
-
+    retracted_articles['TimeLag'] = ((retracted_articles['RetractionDate'] - retracted_articles['OriginalPaperDate'])
+                                     .dt.days)
+    retracted_articles['TimeLag'] = retracted_articles['TimeLag'] / 365
+    return retracted_articles
 
 
 if __name__ == '__main__':
-    convert_columns_to_datetime(get_date_range(get_retracted_articles('data/retractions.csv')))
+    get_time_between_dates(convert_columns_to_datetime(get_date_range(get_retracted_articles('data/retractions.csv'))))
