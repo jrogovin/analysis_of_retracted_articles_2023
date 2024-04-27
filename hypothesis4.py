@@ -42,11 +42,7 @@ def get_time_between_dates(retracted_articles):
 
 
 def get_mean_article_age_per_year(retracted_articles):
-    years = set(retracted_articles['RetractionYear'])
-    for year in years:
-        df = retracted_articles.loc[retracted_articles['RetractionYear'] == year, ['TimeLag']]
-        mean_time_lag = df['TimeLag'].mean()
-        return year, mean_time_lag
+
 
 
 if __name__ == '__main__':
