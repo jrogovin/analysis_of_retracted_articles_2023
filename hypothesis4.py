@@ -1,5 +1,4 @@
 import pandas as pd
-from hypothesis1 import get_date_range
 
 
 def get_retracted_articles(retraction_file):
@@ -10,14 +9,6 @@ def get_retracted_articles(retraction_file):
     """
     file = pd.read_csv(retraction_file, usecols=['Reason', 'RetractionDate', 'OriginalPaperDate', 'RetractionNature'])
     retracted_articles = file.loc[file['RetractionNature'] == 'Retraction']
-
-    years = []
-    for datetime in retracted_articles['RetractionDate']:
-        date = datetime.split(' ')
-        day_month_year = date[0].split('/')
-        year = day_month_year[2]
-        years.append(int(year))
-    retracted_articles['RetractionYear'] = years
 
     return retracted_articles
 
@@ -41,9 +32,5 @@ def get_time_between_dates(retracted_articles):
     return retracted_articles
 
 
-def get_mean_article_age_per_year(retracted_articles):
-
-
-
 if __name__ == '__main__':
-    get_mean_article_age_per_year(get_time_between_dates(convert_columns_to_datetime(get_retracted_articles('data/retractions.csv'))))
+    get_time_between_dates(convert_columns_to_datetime(get_retracted_articles('data/retractions.csv')))
