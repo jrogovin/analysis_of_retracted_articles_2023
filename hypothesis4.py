@@ -18,6 +18,17 @@ def convert_columns_to_datetime(retracted_articles):
     This function converts the values in RetractionDate and OriginalPaperDate to datetime objects.
     :param retracted_articles: A dataframe containing retracted articles
     :return: Columns with dates as datetime objects
+    >>> data = [['3/21/2024', '2/4/2020'], ['3/18/2024 0:00', '2/17/2020']]
+    >>> df = pd.DataFrame(data, columns=['RetractionDate', 'OriginalPaperDate'])
+    >>> new_df = convert_columns_to_datetime(df)
+    >>> new_df
+      RetractionDate OriginalPaperDate
+    0     2024-03-21        2020-02-04
+    1     2024-03-18        2020-02-17
+    >>> new_df.dtypes
+    RetractionDate       datetime64[ns]
+    OriginalPaperDate    datetime64[ns]
+    dtype: object
     """
     retracted_articles['RetractionDate'] = retracted_articles['RetractionDate'].apply(pd.to_datetime)
     retracted_articles['OriginalPaperDate'] = retracted_articles['OriginalPaperDate'].apply(pd.to_datetime)

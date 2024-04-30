@@ -20,6 +20,15 @@ def split_retraction_reasons(retracted_articles):
     This function splits the cells containing retraction reason into new rows for each reason.
     :param retracted_articles: A dataframe containing retracted articles
     :return: All retracted articles with each retraction reason expanded to a new row.
+    >>> data = ['+Concerns/Issues About Image;+Duplication of Image;+Euphemisms for Duplication;']
+    >>> df = pd.DataFrame(data, columns=['Reason'])
+    >>> new_df = split_retraction_reasons(df)
+    >>> new_df
+                             Reason
+    0  +Concerns/Issues About Image
+    0         +Duplication of Image
+    0   +Euphemisms for Duplication
+    0
     """
     retracted_articles['Reason'] = retracted_articles['Reason'].str.split(';')
     file = retracted_articles.explode('Reason')

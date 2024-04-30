@@ -19,6 +19,14 @@ def get_date_range(retracted_articles):
     This function takes retracted articles and returns only articles retracted between 2000 and 2023.
     :param retracted_articles: A variable containing retracted articles
     :return: All retracted articles retracted between 2000 and 2023.
+    >>> data = ['3/21/2024', '7/5/2023', '8/7/2000', '12/31/1979']
+    >>> df = pd.DataFrame(data, columns=['RetractionDate'])
+    >>> new_df = get_date_range(df)
+    >>> new_df
+      RetractionDate  RetractionYear
+    0      3/21/2024            2024
+    1       7/5/2023            2023
+    2       8/7/2000            2000
     """
     years = []
     for datetime in retracted_articles['RetractionDate']:
@@ -37,6 +45,11 @@ def count_years(retracted_articles):
     This function returns the count of retracted articles per year.
     :param retracted_articles: All retracted articles from the dataset.
     :return: A counter of all retracted articles per year.
+    >>> data = ['2024', '2024', '2024', '2021', '2000', '2000', '1970']
+    >>> df = pd.DataFrame(data, columns=['RetractionYear'])
+    >>> new_df = count_years(df)
+    >>> new_df
+    Counter({'2024': 3, '2000': 2, '2021': 1, '1970': 1})
     """
     return Counter(retracted_articles['RetractionYear'])
 

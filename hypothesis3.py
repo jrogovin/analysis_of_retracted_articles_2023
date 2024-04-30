@@ -19,6 +19,18 @@ def get_author_counts(retracted_articles):
     This function gets the number of authors per retracted article
     :param retracted_articles: All retracted articles from the dataset
     :return: A dataframe with a column with the number of authors per retracted article
+    >>> data = ['Vladimir N Ivanov;Peter W Grabham;Cheng-Chia Wu;Tom K Hei']
+    >>> df = pd.DataFrame(data, columns=['Author'])
+    >>> new_df = get_author_counts(df)
+    >>> new_df
+                                                  Author  AuthorCounts
+    0  Vladimir N Ivanov;Peter W Grabham;Cheng-Chia W...             4
+    >>> data = ['Yuanyuan Li']
+    >>> df = pd.DataFrame(data, columns=['Author'])
+    >>> new_df = get_author_counts(df)
+    >>> new_df
+            Author  AuthorCounts
+    0  Yuanyuan Li             1
     """
     author_counts = []
     for author in retracted_articles['Author']:
