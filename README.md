@@ -6,10 +6,10 @@ The goal of this project is to expand on the work done by Van Noorden (2023). Th
   4. Time from publication to retraction: There is about a 2 year lag from publication to retraction.
 
 ## Dependencies
-  Pandas
-  Counter from Collections
-  Matplotlib.pyplot
-
+  1. Pandas
+  2. Counter from Collections
+  3. Matplotlib.pyplot
+  
 ## How to run
 There is a pycharm module for each hypothesis but these do not need to be run. In order to run the program, you can run the main.ipynb file to see the visualizations.
 
